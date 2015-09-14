@@ -1,0 +1,129 @@
+﻿@using System.Linq
+@using MezzClass0._1.Models
+@model MezzClass0._1.Models.TProblema
+
+@{
+    ViewBag.Title = "Detalles";
+    var db = new Entities();
+    var db1 = new MezClassEntities();
+    var parametros = db1.TProblemaParametro.Include("TParametro").Where(par => par.IdProblema == Model.IdProblema).ToList();
+    Layout = null;
+}
+
+<h2>Detalles</h2>
+
+<div>
+
+    <hr/>
+    <dl class="dl-horizontal">
+        <dt>
+            <label>Título</label>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.titulo)
+        </dd>
+        <dt>
+            <label>Creado por:</label>
+        </dt>
+
+        <dd>
+            @{
+                var u = db.AspNetUsers.Where(param => param.Id == Model.usuario).ToList();
+            }
+            @if (u.Count > 0)
+            {
+                <label>@u[0].UserName</label>
+            }
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Enunciado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Enunciado)
+        </dd>
+
+        
+
+        <dt>
+            <label>Universo:</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TUniverso.NombUniverso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComplejidadId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComplejidadId)
+        </dd>
+
+
+    </dl>
+</div>
+@if (ViewBag.items != null)
+{
+    <label>Recursos</label>
+    <table>
+        @foreach (var x in ViewBag.items)
+        {
+            <tr>
+                <td> @x.ToString()
+                <td>
+
+                <td>@Html.ActionLink("Descargar", "Download", new { filename = x.ToString(), ruta = @"E:\Files\" + @Model.IdProblema + @"\" }, new { @class = "botonlink" })</td>
+            </tr>
+        }
+    </table>
+}
+@if (parametros.Count > 0)
+{
+    <label>Parametros</label>
+    <table id="table" class="webgrid-table">
+        <thead>
+            <tr>
+                <th style="width:15%" hidden="">
+                    IDParam
+                </th>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Descripcion
+                </th>
+                <th>
+                    Peso
+                </th>
+                <th>
+                    Valor
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in parametros)
+            {
+                <tr>
+                    <td hidden=""><span id="ID">@x.IdParametro</span></td>
+                    <td><span id="nomb">@x.TParametro.NombParametro</span></td>
+                    <td><span id="desc">@x.TParametro.descripcion</span></td>
+                    <td><span id="peso">@x.TParametro.Peso</span></td>
+                    <td><span id="valor">@x.Valor</span></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (Model.ejemplo == true)
+{
+    <dd>Solucion</dd>
+    <dt>
+        @Model.Solucion;
+    </dt>
+}
+
+

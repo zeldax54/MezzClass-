@@ -1,0 +1,173 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background: #EFEAE3;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+#text {
+    max-width: 100%;
+    width: 1200px;
+    font-size: 14px;
+    height: 250px;
+}
+
+/*Css del Grid*/
+ .webgrid-table
+{
+font-family: "Trebuchet MS" , Arial, Helvetica, cursive;
+font-size: 1.0em;
+width: 100%;
+display: table;
+border-collapse: separate;
+border: solid 0px #98BF21;
+background-color: white;
+}
+.webgrid-table td, th
+{
+/*border: 1px solid #98BF21;*/
+padding: 3px 7px 2px;
+}
+.webgrid-header
+{
+background-color: #4c4848;
+color: #FFFFFF;
+padding-bottom: 4px;
+padding-top: 5px;
+text-align: left;
+    font-family: cursive;
+    font-style: italic;
+
+}
+.webgrid-header a {
+    color: #68b12f;
+    font-family: cursive;
+}
+.webgrid-footer
+{
+}
+.webgrid-row-style
+{
+padding: 3px 7px 2px;
+  font-family: cursive;
+    font-style: italic;
+}
+.webgrid-alternating-row
+{
+background-color: #EAF2D3;
+padding: 3px 7px 2px;
+  font-family: cursive;
+    font-style: italic;
+}
+/*Css del Grid*/
+
+#nuevo {
+    font-family: cursive;
+    font-weight: bold;
+    font-size: 20px;
+    color: #ffffff;
+      }
+
+#nuevo:hover {
+    font-size: 30px;
+}
+
+.titulos {
+    font-family: cursive;
+    font-weight: lighter;
+}
+
+.botoncrear {
+    background-color: #509111;
+    background: -webkit-gradient(linear, left top, left bottom, from(#509111), to(#50911e));
+    background: -webkit-linear-gradient(top, #509111, #50911e);
+    background: -moz-linear-gradient(top, #509111, #50911e);
+    background: -ms-linear-gradient(top, #509111, #50911e);
+    background: -o-linear-gradient(top, #509111, #50911e);
+ 
+    border: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 1px 0 0 #000000 inset;
+    -moz-box-shadow: 0 1px 0 0 #000000 inset;
+    -ms-box-shadow: 0 1px 0 0 #000000 inset;
+    -o-box-shadow: 0 1px 0 0 #000000 inset;
+    box-shadow: inset 0 1px 0 0 #000000;
+    color: white;
+    font-weight: bold;
+    padding: 6px 20px;
+    text-align: center;
+   
+}
+
+.botoncrear:hover {
+        text-decoration: none;
+    color: #ffffff;
+    font-size: 15px;
+    }
+
+.botonlink {
+    background-color: #090808;
+    background: -webkit-gradient(linear, left top, left bottom, from(#090808), to(#322e2e));
+    background: -webkit-linear-gradient(top, #090808, #322e2e);
+    background: -moz-linear-gradient(top, #090808, #322e2e);
+    background: -ms-linear-gradient(top, #090808, #322e2e);
+    background: -o-linear-gradient(top, #090808, #322e2e);
+ 
+    border: 1px solid #509111;
+    border-bottom: 1px solid #5b992b;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 1px 0 0 #9fd574 inset;
+    -moz-box-shadow: 0 1px 0 0 #9fd574 inset;
+    -ms-box-shadow: 0 1px 0 0 #9fd574 inset;
+    -o-box-shadow: 0 1px 0 0 #9fd574 inset;
+    box-shadow: inset 0 1px 0 0 #9fd574;
+    color: white;
+    font-weight: bold;
+    padding: 0px 17px;
+    text-align: center;
+   
+}
+.botonlink:hover {
+        text-decoration: none;
+    color: #ffffff;
+    font-size: 15px;
+    }
+
+#enunc {
+    color: #ffffff;
+}
+
+.lista {
+    width: 140px;
+height: 30px;
+font-size: 16px;
+font-family: cursive;
+}
+

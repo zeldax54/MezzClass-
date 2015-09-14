@@ -1,0 +1,55 @@
+﻿@model IEnumerable<MezzClass0._1.Models.AspNetUsers>
+
+@{
+    ViewBag.Title = "Usuarios";
+}
+
+<h2>Usuarios</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            <label>E-Mail</label>
+        </th>
+        <th>
+           <label>Rol</label>
+        </th>
+       
+        <th>
+            <label>Hash</label>
+        </th>
+      
+        <th>
+           <label>Usuario</label>
+        </th>
+      
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @foreach (var c in  item.AspNetRoles)
+            {
+                @c.Name;
+            }
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.PasswordHash)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+           
+           
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id})
+        </td>
+    </tr>
+}
+
+</table>

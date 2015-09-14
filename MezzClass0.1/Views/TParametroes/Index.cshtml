@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MezzClass0._1.Models.TParametro>
+
+@{
+    ViewBag.Title = "Parametros";
+}
+
+<h2 class="titulos">Parametros</h2>
+@if (ViewBag.error != null)
+{
+    <label class="label-danger form-control" style="width: 600px">@ViewBag.error</label>
+}
+<p>
+    @Html.ActionLink("Crear", "Create",new {id=ViewBag.Id},new{@class="botoncrear"})
+</p>
+
+
+@{var grid = new WebGrid(Model, canPage: true, rowsPerPage: 20);
+grid.Pager(WebGridPagerModes.All);
+}
+<div id="">
+    @grid.GetHtml(
+
+        tableStyle: "webgrid-table",
+        headerStyle: "webgrid-header",
+        footerStyle: "webgrid-footer",
+        alternatingRowStyle: "webgrid-alternating-row",
+        rowStyle: "webgrid-row-style",
+        columns: grid.Columns(
+                    grid.Column("NombParametro", "Nombre", @<text> <span>@item.NombParametro</span></text>),
+
+                                     grid.Column("Peso", "Peso", @<text> <span>@item.Peso</span></text>),
+                                               grid.Column("TUniverso.NombUniverso", "Universo", @<text> <span>@item.TUniverso.NombUniverso</span></text>),
+
+            grid.Column("", format: @<text>
+        @Html.ActionLink("Editar", "Edit", new { id = item.IdParametro },new{@class="botonlink"})
+   
+            </text>, style: "width:100px", canSort: false),
+
+            grid.Column("", format: @<text>
+        @Html.ActionLink("Eliminar", "Delete", new { id = item.IdParametro }, new { @class = "botonlink" })
+            </text>, style: "width:100px", canSort: false)
+
+
+                                        ))
+    </div>

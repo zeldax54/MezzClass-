@@ -1,0 +1,75 @@
+﻿@using MezzClass0._1.Models
+@model IEnumerable<MezzClass0._1.Models.TProblema>
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Index";
+    var db = new Entities();
+    
+   
+
+}
+@functions {
+
+    private string User(string id)
+    {
+        
+        var db = new Entities();
+        var u = db.AspNetUsers.Where(param => param.Id == id).ToList();
+        if (u.Count > 0)
+            return u[0].UserName;
+        return "Usuario Eliminado";
+
+
+    }
+
+  
+}
+
+
+
+
+<br>
+<p>
+    @Html.ActionLink("Nuevo Problema", "Create",new{id=ViewBag.id,bandera=ViewBag.bandera},new{@class="botoncrear"})
+
+</p>
+
+@if (ViewBag.error != null)
+{
+    <div class="alert-danger form-control" style="width: 600px">@ViewBag.error</div>
+}
+
+
+@{var grid = new WebGrid(Model, canPage: true, rowsPerPage: 20);
+grid.Pager(WebGridPagerModes.All);
+}
+<div id="">
+    @grid.GetHtml(
+
+        tableStyle: "webgrid-table",
+        headerStyle: "webgrid-header",
+        footerStyle: "webgrid-footer",
+        alternatingRowStyle: "webgrid-alternating-row",
+        rowStyle: "webgrid-row-style",
+        columns: grid.Columns(
+            grid.Column("titulo", "Titulo",@<text> <span>@item.titulo</span></text>),
+            grid.Column("ejemplo", "Ejemplo",@<text>
+                                                 @if (item.ejemplo == true)
+                                                 {
+                                                     <input type="checkbox" checked="checked" disabled="disabled"/>
+                                                 }
+                                              </text>),
+             grid.Column("Usuario", "Autor",@<text> <span>@User(@item.Usuario)</span></text>),
+            grid.Column("ComplejidadId", "Complejidad", @<text> <span id="comp">@item.ComplejidadId</span></text>),
+            grid.Column("", format: @<text>
+    @Html.ActionLink("Editar", "Edit", new { id = item.IdProblema },new{@class="botonlink"})
+            </text>, style: "width:100px", canSort: false),
+
+            grid.Column("", format: @<text>
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.IdProblema }, new { @class = "botonlink" })
+            </text>, style: "width:100px", canSort: false)
+
+
+                            ))
+</div>

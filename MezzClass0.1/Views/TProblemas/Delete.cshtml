@@ -1,0 +1,87 @@
+﻿@model MezzClass0._1.Models.TProblema
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+
+
+<h3>Esta seguro  que desea Eliminar este Problema?</h3>
+<div>
+    <h4>TProblema</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Enunciado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Enunciado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Solucion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Solucion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ejemplo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ejemplo)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TUniverso.NombUniverso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TUniverso.NombUniverso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComplejidadId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComplejidadId)
+        </dd>
+
+    </dl>
+    <label>Recursos</label>
+    @if (ViewBag.items != null)
+    {
+        <table>
+            <tr>
+                <th>File Name</th>
+                <th>Link</th>
+            </tr>
+            @for (var i = 0; i <= ViewBag.items.Count - 1; i++)
+            {
+                <tr>
+                    <td>
+                        @ViewBag.items[i].ToString()
+                    </td>
+                    <td>
+                        @Html.ActionLink("Download", "Download", new { filename = ViewBag.items[i].ToString(), ruta = @"E:\Files\" + @Model.IdProblema + @"\" })
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="botoncrear" /> |
+            @Html.ActionLink("Atras", "Index", new { id = Model.IdUniverso,p=Model.usuario },new{@class="botonlink"})
+        </div>
+    }
+</div>

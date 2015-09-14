@@ -1,0 +1,42 @@
+﻿@model MezzClass0._1.Models.TParametro
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TParametro</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombParametro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombParametro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Peso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Peso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TUniverso.NombUniverso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TUniverso.NombUniverso)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdParametro }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,84 @@
+﻿@using MezzClass0._1.Models
+@using Microsoft.AspNet.Identity
+@model IEnumerable<MezzClass0._1.Models.TUniverso>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="titulos">Universos</h2>
+@if (ViewBag.error != null)
+{
+    <label class="label-warning">@ViewBag.error</label>
+}
+@if (User.IsInRole("Profesor"))
+{
+    <p>
+        @Html.ActionLink("Crear", "Create",new{},new{@class="botoncrear"})
+    </p>
+}
+
+@{var grid = new WebGrid(Model, canPage: true, rowsPerPage: 20);
+grid.Pager(WebGridPagerModes.All);
+}
+<div id="">
+    @grid.GetHtml(
+
+        tableStyle: "webgrid-table",
+        headerStyle: "webgrid-header",
+        footerStyle: "webgrid-footer",
+        alternatingRowStyle: "webgrid-alternating-row",
+        rowStyle: "webgrid-row-style",
+        columns: grid.Columns(
+
+                    grid.Column("NombUniverso", "Universo", @<text> <span>@item.NombUniverso</span></text>),
+                                    grid.Column("CantNiveles", "Niveles", @<text> <span>@item.CantNiveles</span></text>),
+            
+            grid.Column("", format: @<text>
+        <div>
+            @if (User.IsInRole("Profesor"))
+            {
+                if (ViewBag.bandera != 1 && ViewBag.bandera != 2)
+                {
+                    @Html.ActionLink("Parametros", "Index", "TParametroes", new { id = item.IdUniverso }, new { @class = "botonlink" })
+                    
+                }
+
+            }
+        </div>
+            </text>, style: "", canSort: false),
+            grid.Column("", format: @<text>
+    @if (ViewBag.bandera == 1)
+    {
+        @Html.ActionLink("Problemas", "Index", "TProblemas", new { id = item.IdUniverso, p = User.Identity.GetUserId() }, new { @class = "botonlink" })
+    }
+    else
+    {
+        if (ViewBag.bandera != 2)
+        {
+            @Html.ActionLink("Problemas", "Index", "TProblemas", new { id = item.IdUniverso }, new { @class = "botonlink" })
+        }
+
+
+
+    }
+            </text>, style: "", canSort: false),
+    
+                                    grid.Column("", "", @<text> @if (User.IsInRole("Profesor"))
+                                    {
+                                        if (ViewBag.bandera != 1 && ViewBag.bandera != 2)
+                                        {
+                                            @Html.ActionLink("Editar", "Edit", new { id = item.IdUniverso }, new { @class = "botonlink" })
+                                            @Html.ActionLink("Eliminar", "Delete", new { id = item.IdUniverso }, new { @class = "botonlink" })
+                                        }
+                                    }</text>), grid.Column("", "", @<text> 
+                                    
+                                        @if (ViewBag.bandera == 2)
+                                        {
+                                            @Html.ActionLink("Clasificar", "Index", "Clasificar", new { id = item.IdUniverso }, new { @class = "botonlink" })
+                                        }
+                                    </text>)
+
+
+                                                                                                                                                    ))
+</div>

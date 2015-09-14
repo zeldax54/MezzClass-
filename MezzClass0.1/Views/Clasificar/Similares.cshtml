@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Similares";
+    Layout = null;
+}
+
+
+
+@if (ViewBag.probs != null)
+{
+    <h4 class="titulos">Problemas Ejemplo Similares para el Problema <span id="t1">@ViewBag.titulo</span></h4>
+    <input type="text" value="@ViewBag.enunciado" id="enun" hidden="">
+    
+    <table class="webgrid-table">
+        <thead>
+        <tr>
+            <th>Problema</th>
+            <th>Titulo</th>
+           <th hidden="">adsfasdf</th>
+            <th>Detalles</th>
+            <th>Enunciados</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var x in ViewBag.probs)
+        {
+            <tr>
+                <td><span id="idprob">@x.IdProblema</span>
+                </td>
+                <td><span id="tit">@x.titulo</span>
+                </td>
+              
+                <td>
+                    <div style="text-align: left;">
+                        <button type="button" class="btn btn-default btn-sm" id="detalles">
+                            <span class="glyphicon glyphicon-list-alt"></span>
+                        </button>
+                    </div>
+                </td>
+                <td>
+                    <div style="text-align: left;">
+                        <button type="button" class="btn btn-default btn-sm" id="enunciados">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </button>
+                    </div>
+                </td>
+                <td>
+                    <input type="text" value="@x.Enunciado" id="enunp" hidden="">
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <label class="titulos">No se encontraron ejemplos similares al problema @ViewBag.titulo</label>
+}
+
+
+
+

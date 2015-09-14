@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MezClassModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Recursos">
+    <Key>
+      <PropertyRef Name="IdRecurso" />
+    </Key>
+    <Property Name="IdRecurso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdProblema" Type="Int32" Nullable="false" />
+    <Property Name="Tipo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Recurso" Type="Binary" MaxLength="8000" FixedLength="true" Nullable="false" />
+    <NavigationProperty Name="TProblema" Relationship="Self.FK_Recursos_TProblema" FromRole="Recursos" ToRole="TProblema" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TParametro">
+    <Key>
+      <PropertyRef Name="IdParametro" />
+    </Key>
+    <Property Name="IdParametro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombParametro" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Peso" Type="Int32" Nullable="false" />
+    <Property Name="IdUniverso" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TUniverso" Relationship="Self.FK_TParametro_TUniverso" FromRole="TParametro" ToRole="TUniverso" />
+    <NavigationProperty Name="TProblemaParametro" Relationship="Self.FK_TProblemaParametro_TParametro" FromRole="TParametro" ToRole="TProblemaParametro" />
+  </EntityType>
+  <EntityType Name="TProblema">
+    <Key>
+      <PropertyRef Name="IdProblema" />
+    </Key>
+    <Property Name="IdProblema" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Enunciado" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Solucion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IdUniverso" Type="Int32" Nullable="false" />
+    <Property Name="ejemplo" Type="Boolean" Nullable="false" />
+    <Property Name="ComplejidadId" Type="Int32" Nullable="false" />
+    <Property Name="usuario" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Recursos" Relationship="Self.FK_Recursos_TProblema" FromRole="TProblema" ToRole="Recursos" />
+    <NavigationProperty Name="TUniverso" Relationship="Self.FK_TProblema_TUniverso" FromRole="TProblema" ToRole="TUniverso" />
+    <NavigationProperty Name="TProblemaParametro" Relationship="Self.FK_TProblemaParametro_TProblema" FromRole="TProblema" ToRole="TProblemaParametro" />
+    <NavigationProperty Name="TProblemaUsuario" Relationship="Self.FK_TProblemaUsuario_TProblema" FromRole="TProblema" ToRole="TProblemaUsuario" />
+  </EntityType>
+  <EntityType Name="TProblemaParametro">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="IdProblema" Type="Int32" Nullable="false" />
+    <Property Name="IdParametro" Type="Int32" Nullable="false" />
+    <Property Name="Valor" Type="Double" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="TParametro" Relationship="Self.FK_TProblemaParametro_TParametro" FromRole="TProblemaParametro" ToRole="TParametro" />
+    <NavigationProperty Name="TProblema" Relationship="Self.FK_TProblemaParametro_TProblema" FromRole="TProblemaParametro" ToRole="TProblema" />
+  </EntityType>
+  <EntityType Name="TProblemaUsuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="IdProblema" Type="Int32" Nullable="false" />
+    <Property Name="IdUsuario" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Solucion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="TProblema" Relationship="Self.FK_TProblemaUsuario_TProblema" FromRole="TProblemaUsuario" ToRole="TProblema" />
+  </EntityType>
+  <EntityType Name="TUniverso">
+    <Key>
+      <PropertyRef Name="IdUniverso" />
+    </Key>
+    <Property Name="IdUniverso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombUniverso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CantNiveles" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TParametro" Relationship="Self.FK_TParametro_TUniverso" FromRole="TUniverso" ToRole="TParametro" />
+    <NavigationProperty Name="TProblema" Relationship="Self.FK_TProblema_TUniverso" FromRole="TUniverso" ToRole="TProblema" />
+  </EntityType>
+  <Association Name="FK_Recursos_TProblema">
+    <End Role="TProblema" Type="Self.TProblema" Multiplicity="1" />
+    <End Role="Recursos" Type="Self.Recursos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TProblema">
+        <PropertyRef Name="IdProblema" />
+      </Principal>
+      <Dependent Role="Recursos">
+        <PropertyRef Name="IdProblema" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TParametro_TUniverso">
+    <End Role="TUniverso" Type="Self.TUniverso" Multiplicity="1" />
+    <End Role="TParametro" Type="Self.TParametro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TUniverso">
+        <PropertyRef Name="IdUniverso" />
+      </Principal>
+      <Dependent Role="TParametro">
+        <PropertyRef Name="IdUniverso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TProblemaParametro_TParametro">
+    <End Role="TParametro" Type="Self.TParametro" Multiplicity="1" />
+    <End Role="TProblemaParametro" Type="Self.TProblemaParametro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TParametro">
+        <PropertyRef Name="IdParametro" />
+      </Principal>
+      <Dependent Role="TProblemaParametro">
+        <PropertyRef Name="IdParametro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TProblema_TUniverso">
+    <End Role="TUniverso" Type="Self.TUniverso" Multiplicity="1" />
+    <End Role="TProblema" Type="Self.TProblema" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TUniverso">
+        <PropertyRef Name="IdUniverso" />
+      </Principal>
+      <Dependent Role="TProblema">
+        <PropertyRef Name="IdUniverso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TProblemaParametro_TProblema">
+    <End Role="TProblema" Type="Self.TProblema" Multiplicity="1" />
+    <End Role="TProblemaParametro" Type="Self.TProblemaParametro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TProblema">
+        <PropertyRef Name="IdProblema" />
+      </Principal>
+      <Dependent Role="TProblemaParametro">
+        <PropertyRef Name="IdProblema" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TProblemaUsuario_TProblema">
+    <End Role="TProblema" Type="Self.TProblema" Multiplicity="1" />
+    <End Role="TProblemaUsuario" Type="Self.TProblemaUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TProblema">
+        <PropertyRef Name="IdProblema" />
+      </Principal>
+      <Dependent Role="TProblemaUsuario">
+        <PropertyRef Name="IdProblema" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MezClassEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Recursos" EntityType="Self.Recursos" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TParametro" EntityType="Self.TParametro" />
+    <EntitySet Name="TProblema" EntityType="Self.TProblema" />
+    <EntitySet Name="TProblemaParametro" EntityType="Self.TProblemaParametro" />
+    <EntitySet Name="TProblemaUsuario" EntityType="Self.TProblemaUsuario" />
+    <EntitySet Name="TUniverso" EntityType="Self.TUniverso" />
+    <AssociationSet Name="FK_Recursos_TProblema" Association="Self.FK_Recursos_TProblema">
+      <End Role="TProblema" EntitySet="TProblema" />
+      <End Role="Recursos" EntitySet="Recursos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TParametro_TUniverso" Association="Self.FK_TParametro_TUniverso">
+      <End Role="TUniverso" EntitySet="TUniverso" />
+      <End Role="TParametro" EntitySet="TParametro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TProblemaParametro_TParametro" Association="Self.FK_TProblemaParametro_TParametro">
+      <End Role="TParametro" EntitySet="TParametro" />
+      <End Role="TProblemaParametro" EntitySet="TProblemaParametro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TProblema_TUniverso" Association="Self.FK_TProblema_TUniverso">
+      <End Role="TUniverso" EntitySet="TUniverso" />
+      <End Role="TProblema" EntitySet="TProblema" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TProblemaParametro_TProblema" Association="Self.FK_TProblemaParametro_TProblema">
+      <End Role="TProblema" EntitySet="TProblema" />
+      <End Role="TProblemaParametro" EntitySet="TProblemaParametro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TProblemaUsuario_TProblema" Association="Self.FK_TProblemaUsuario_TProblema">
+      <End Role="TProblema" EntitySet="TProblema" />
+      <End Role="TProblemaUsuario" EntitySet="TProblemaUsuario" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

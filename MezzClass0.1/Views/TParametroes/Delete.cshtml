@@ -1,0 +1,57 @@
+﻿@model MezzClass0._1.Models.TParametro
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<h3 class="titulos">Desea eliminar este parámetro?</h3>
+<div>
+    @if (ViewBag.error != null)
+    {
+        <div class="alert-danger form-control" style="width: 600px">@ViewBag.error</div>
+    }
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombParametro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombParametro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Peso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Peso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TUniverso.NombUniverso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TUniverso.NombUniverso)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="botoncrear" /> |
+            @Html.ActionLink("Volver", "Index",new{id=Model.IdUniverso},new{@class="botonlink"})
+        </div>
+    }
+</div>

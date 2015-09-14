@@ -1,0 +1,41 @@
+﻿@model MezzClass0._1.Models.TUniverso
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+
+
+
+<div>
+    <h4 class="titulos">Eliminar un Universo tambien eliminará todos los Problemas y Parametros que este Contenga.
+    Desea Eliminarlo?</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           <label>Universo</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombUniverso)
+        </dd>
+
+        <dt>
+          <label>Cantidad de Niveles</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantNiveles)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="botoncrear" /> |
+            @Html.ActionLink("Volver", "Index",null,new{@class="botonlink"})
+        </div>
+    }
+</div>

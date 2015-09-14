@@ -1,0 +1,59 @@
+﻿@model MezzClass0._1.Models.TUniverso
+
+@{
+    ViewBag.Title = "Crear";
+}
+
+
+
+
+
+@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+   
+
+        <div class="form-horizontal">
+            <h4 class="titulos">Crear Universo</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NombUniverso, "Universo", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NombUniverso, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nombre del Universo", @required = "true", @title = "Rellene este campo" } })
+                    @Html.ValidationMessageFor(model => model.NombUniverso, "", new { @class = "text-danger" })
+                    @if (ViewBag.error != null)
+                    {
+                        <div class="alert-danger form-control" style="width: 300px">@ViewBag.error</div>
+                    }
+                </div>
+            </div>
+          
+            <div class="form-group">
+                @Html.LabelFor(model => model.CantNiveles, "Cantidad de Niveles", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CantNiveles, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CantNiveles, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="alert-danger form-control" style="width: 600px" hidden="" id="alc">La cantidad de Niveles debe ser menor o igual a 3</div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Crear" class="botoncrear" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Volver", "Index", new { }, new { @class = "botonlink" })
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+           @Scripts.Render("~/Content/Site.js")
+    }

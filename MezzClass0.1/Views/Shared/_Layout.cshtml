@@ -1,0 +1,59 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - MezClass</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <span class="icon-grid-view"></span>
+                @Html.ActionLink("Orweb", "Index", "Home", new { area = "" }, new { @class = "navbar-brand",style="font-family: cursive"})
+               
+            </div>
+            <div class="navbar-collapse collapse">
+              
+          
+                @if (User.IsInRole("Profesor"))
+                { 
+                    @Html.ActionLink("Crear", "Index", "TUniversoes", new { area = "" }, new { @class = "navbar-brand",id="nuevo" })
+                   
+                }
+              @if (User.Identity.IsAuthenticated)
+              {
+                @Html.ActionLink("Mis Problemas", "Index", "TUniversoes", new { p = 1 }, new { @class = "navbar-brand",id="nuevo" })
+                @Html.ActionLink("Clasificar", "Index", "TUniversoes", new { p = 2 }, new { @class = "navbar-brand", id = "nuevo" })
+              }
+                @Html.ActionLink("Ayuda", "Index", "Help",null, new { @class = "navbar-brand", style = "font-family: cursive" })
+                   
+                
+
+
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p class="titulos">&copy; @DateTime.Now.Year -Orweb Aplicación para la Resolución de Problemas</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

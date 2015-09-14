@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MezClassModelStoreContainer" CdmEntityContainer="MezClassEntities">
+    <EntitySetMapping Name="Recursos">
+      <EntityTypeMapping TypeName="MezClassModel.Recursos">
+        <MappingFragment StoreEntitySet="Recursos">
+          <ScalarProperty Name="IdRecurso" ColumnName="IdRecurso" />
+          <ScalarProperty Name="IdProblema" ColumnName="IdProblema" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Recurso" ColumnName="Recurso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="MezClassModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TParametro">
+      <EntityTypeMapping TypeName="MezClassModel.TParametro">
+        <MappingFragment StoreEntitySet="TParametro">
+          <ScalarProperty Name="IdParametro" ColumnName="IdParametro" />
+          <ScalarProperty Name="NombParametro" ColumnName="NombParametro" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="Peso" ColumnName="Peso" />
+          <ScalarProperty Name="IdUniverso" ColumnName="IdUniverso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TProblema">
+      <EntityTypeMapping TypeName="MezClassModel.TProblema">
+        <MappingFragment StoreEntitySet="TProblema">
+          <ScalarProperty Name="IdProblema" ColumnName="IdProblema" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="Enunciado" ColumnName="Enunciado" />
+          <ScalarProperty Name="Solucion" ColumnName="Solucion" />
+          <ScalarProperty Name="IdUniverso" ColumnName="IdUniverso" />
+          <ScalarProperty Name="ejemplo" ColumnName="ejemplo" />
+          <ScalarProperty Name="ComplejidadId" ColumnName="ComplejidadId" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TProblemaParametro">
+      <EntityTypeMapping TypeName="MezClassModel.TProblemaParametro">
+        <MappingFragment StoreEntitySet="TProblemaParametro">
+          <ScalarProperty Name="IdProblema" ColumnName="IdProblema" />
+          <ScalarProperty Name="IdParametro" ColumnName="IdParametro" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TProblemaUsuario">
+      <EntityTypeMapping TypeName="MezClassModel.TProblemaUsuario">
+        <MappingFragment StoreEntitySet="TProblemaUsuario">
+          <ScalarProperty Name="IdProblema" ColumnName="IdProblema" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="Solucion" ColumnName="Solucion" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TUniverso">
+      <EntityTypeMapping TypeName="MezClassModel.TUniverso">
+        <MappingFragment StoreEntitySet="TUniverso">
+          <ScalarProperty Name="IdUniverso" ColumnName="IdUniverso" />
+          <ScalarProperty Name="NombUniverso" ColumnName="NombUniverso" />
+          <ScalarProperty Name="CantNiveles" ColumnName="CantNiveles" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
